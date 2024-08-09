@@ -15,6 +15,9 @@ from ruamel.yaml import YAML
 from typing import Optional
 from mysupport.PopupWindowGenerator._2 import PopupWindowGenerator, checkbox
 import uuid
+import __config
+# import App
+
 
 
 # 获取脚本的绝对路径
@@ -161,18 +164,21 @@ def post(parse_result, target_dirs: list[str]):
 
     PopupWindowGenerator().popup("邮件发送成功！")
 
+# from dotenv import load_dotenv
 
-# sys.argv.append("mylink://d.overtime/?release")
+# sys.argv.append("mylink://d.overtime/")
 if __name__ == "__main__":
     if len(sys.argv) < 2:
         print("请传入要显示的消息作为参数！")
         exit()
 
-    target_dirs = [r"G:\Program Data\ONEDRIVE\987384390\OneDrive",
-                   r"F:\杂乱文件",
-                   r"G:\Program Data\ONEDRIVE2023\MY\OneDrive - PANSCLOUD",
-                   r"G:\Program Data\ONEDRIVE2023\LEARNING\OneDrive - PANSCLOUD",
-                   r"G:\Program Data\ONEDRIVE\TB0001\OneDrive - MsTeams\DATA2 - TTP - DATA"]
+    # # 加载.env文件
+    # load_dotenv()
+    # # 读取COOKIE变量
+    # self._cookies = cookies or os.getenv('COOKIE')
+
+
+
 
     # 开发模式
     if sys.argv[1] == "dev":
@@ -181,7 +187,7 @@ if __name__ == "__main__":
             exit()
 
         parse_result = urllib.parse.urlparse(f"mylink://{sys.argv[2]}")
-        config_directory, config_file = main(parse_result, target_dirs)
+        config_directory, config_file = main(parse_result, __config.TARGET_PATHS)
         if config_directory is not None:
             print(Path(config_directory) / config_file)
         exit()
@@ -189,10 +195,10 @@ if __name__ == "__main__":
     parse_result = urllib.parse.urlparse(sys.argv[1])
 
     if parse_result.fragment == "post":
-        post(parse_result, target_dirs)
+        post(parse_result, __config.TARGET_PATHS)
         exit()
 
-    config_directory, config_file = main_withgui(parse_result, target_dirs)
+    config_directory, config_file = main_withgui(parse_result, __config.TARGET_PATHS)
     if config_directory is not None:
         config = get_config(Path(config_directory) / config_file)
 
