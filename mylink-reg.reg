@@ -1,0 +1,12 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\mylink]
+@="URL:My Link Protocol"
+"URL Protocol"=""
+
+[HKEY_CLASSES_ROOT\mylink\shell]
+
+[HKEY_CLASSES_ROOT\mylink\shell\open]
+
+[HKEY_CLASSES_ROOT\mylink\shell\open\command]
+@="\"python\" \"G:\\Program Data\\ONEDRIVE\\987384390\\OneDrive\\开发\\Project\\MYLINK\\__init__.py\" \"%1\""
