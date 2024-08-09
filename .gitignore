@@ -4,5 +4,9 @@
 # 不忽略 .gitignore 文件
 !.gitignore
 
-__pri__*
+# 忽略特定的 __pycache__ 目录
+__pycache__/
+
+# 忽略所有以 _private_ 开头的文件和文件夹
+_private_*
 

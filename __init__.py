@@ -15,7 +15,7 @@ from ruamel.yaml import YAML
 from typing import Optional
 from mysupport.PopupWindowGenerator._2 import PopupWindowGenerator, checkbox
 import uuid
-import __config
+import _private_config
 # import App
 
 
@@ -187,7 +187,7 @@ if __name__ == "__main__":
             exit()
 
         parse_result = urllib.parse.urlparse(f"mylink://{sys.argv[2]}")
-        config_directory, config_file = main(parse_result, __config.TARGET_PATHS)
+        config_directory, config_file = main(parse_result, _private_config.TARGET_PATHS)
         if config_directory is not None:
             print(Path(config_directory) / config_file)
         exit()
@@ -195,10 +195,10 @@ if __name__ == "__main__":
     parse_result = urllib.parse.urlparse(sys.argv[1])
 
     if parse_result.fragment == "post":
-        post(parse_result, __config.TARGET_PATHS)
+        post(parse_result, _private_config.TARGET_PATHS)
         exit()
 
-    config_directory, config_file = main_withgui(parse_result, __config.TARGET_PATHS)
+    config_directory, config_file = main_withgui(parse_result, _private_config.TARGET_PATHS)
     if config_directory is not None:
         config = get_config(Path(config_directory) / config_file)
 
